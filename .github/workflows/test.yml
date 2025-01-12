@@ -2,7 +2,9 @@ name: Example Workflow
 on: push
 jobs:
   Test:
-    runs-on: ubuntu-latest
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-8x16-with-cache
+      - nscloud-git-mirror-5gb
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: ./.github/actions
