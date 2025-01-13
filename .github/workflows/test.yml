@@ -5,7 +5,7 @@ jobs:
     runs-on:
       - nscloud-ubuntu-22.04-amd64-4x8-with-cache
       - nscloud-cache-size-50gb
-      ##  - nscloud-cache-tag-carboxylic-lithium-nix-store-cache
+      - nscloud-cache-tag-ci-test-nix-store-cache
       - nscloud-git-mirror-1gb
     steps:
       - uses: actions/checkout@v2.3.4
