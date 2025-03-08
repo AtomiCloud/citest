@@ -28,6 +28,7 @@ runs:
     # NAMESPACE LAB VERSION
     - name: Checkout Repository
       if: inputs.namespacelabs == 'true' && inputs.checkout == 'true'
+      shell: bash
     - uses: actions/create-github-app-token@v1
       id: app-token
       with:
@@ -59,6 +60,7 @@ runs:
     # NATIVE VERSION
     - name: Checkout Repository
       if: inputs.namespacelabs == 'false' && inputs.checkout == 'true'
+      shell: bash
     - uses: actions/create-github-app-token@v1
       id: app-token
       with:
