@@ -1,0 +1,42 @@
+name: CI-CD
+
+on:
+  push:
+
+jobs:
+  precommit:
+    name: Pre-commit Check
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x8-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-sulfoxide-sodium-nix-store-cache
+      - nscloud-git-mirror-1gb
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: ./.github/actions
+        with:
+          checkout: true
+          auth-bot-app-id: ${{ vars.AUTH_BOT_APP_ID }}
+          auth-bot-secret-key: ${{ secrets.AUTH_BOT_SECRET_KEY }}
+
+  release:
+    name: Semantic Release
+    needs:
+      - precommit
+    if: github.ref == 'refs/heads/main'
+    runs-on:
+      - nscloud-ubuntu-22.04-amd64-4x8-with-cache
+      - nscloud-cache-size-50gb
+      - nscloud-cache-tag-sulfoxide-sodium-releaser-nix-store-cache
+      - nscloud-git-mirror-1gb
+    permissions:
+      contents: "write"
+      packages: "write"
+      actions: "read"
+    steps:
+      - uses: AtomiCloud/actions.setup-nix@v1.2.1
+      - uses: AtomiCloud/actions.cache-npm@v1.0.1
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: nix develop .#releaser -c scripts/ci/release.sh
