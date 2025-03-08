@@ -10,6 +10,10 @@ inputs:
   short-length:
     default: 7
     description: length for short values
+  auth-bot-app-id:
+    description: App Id for auth bot
+  auth-bot-secret-key:
+    description: Private key for auth bot
 branding:
   color: blue
   icon: settings
@@ -31,8 +35,8 @@ runs:
       uses: actions/create-github-app-token@v1
       id: app-token
       with:
-        app-id: ${{ vars.AUTH_BOT_APP_ID }}
-        private-key: ${{ secrets.AUTH_BOT_SECRET_KEY }}
+        app-id: inputs.auth-bot-app-id
+        private-key: inputs.auth-bot-secret-key
       uses: namespacelabs/nscloud-checkout-action@v5
       with:
         fetch-depth: 0
@@ -61,8 +65,8 @@ runs:
       uses: actions/create-github-app-token@v1
       id: app-token
       with:
-        app-id: ${{ vars.AUTH_BOT_APP_ID }}
-        private-key: ${{ secrets.AUTH_BOT_SECRET_KEY }}
+        app-id: inputs.auth-bot-app-id
+        private-key: inputs.auth-bot-secret-key
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
