@@ -18,7 +18,6 @@ jobs:
           checkout: true
           auth-bot-app-id: ${{ vars.AUTH_BOT_APP_ID }}
           auth-bot-secret-key: ${{ secrets.AUTH_BOT_SECRET_KEY }}
-          short-length: 7
 
   release:
     name: Semantic Release
