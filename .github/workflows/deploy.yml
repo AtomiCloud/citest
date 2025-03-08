@@ -29,6 +29,10 @@ jobs:
       - nscloud-cache-size-50gb
       - nscloud-cache-tag-sulfoxide-sodium-releaser-nix-store-cache
       - nscloud-git-mirror-1gb
+    permissions:
+      contents: "write"
+      packages: "write"
+      actions: "read"
     steps:
       - uses: AtomiCloud/actions.setup-nix@v1.2.1
       - uses: AtomiCloud/actions.cache-npm@v1.0.1
