@@ -31,8 +31,8 @@ runs:
       uses: actions/create-github-app-token@v1
       id: app-token
       with:
-        app-id: ${{ vars.AUTH_BOT_APP_ID}}
-        private-key: ${{secrets.AUTH_BOT_SECRET_KEY}}
+        app-id: ${{ vars.AUTH_BOT_APP_ID }}
+        private-key: ${{ secrets.AUTH_BOT_SECRET_KEY }}
       uses: namespacelabs/nscloud-checkout-action@v5
       with:
         fetch-depth: 0
@@ -61,12 +61,12 @@ runs:
       uses: actions/create-github-app-token@v1
       id: app-token
       with:
-        app-id: ${{ vars.AUTH_BOT_APP_ID}}
-        private-key: ${{secrets.AUTH_BOT_SECRET_KEY}}
+        app-id: ${{ vars.AUTH_BOT_APP_ID }}
+        private-key: ${{ secrets.AUTH_BOT_SECRET_KEY }}
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        token: ${{ steps.app-token.outputs.token}}
+        token: ${{ steps.app-token.outputs.token }}
       run: |
         git config user.name auth-bot
         git config user.email auth-bot@atomi.cloud
